@@ -1,0 +1,49 @@
+{
+  "catalogId": "https://example.com/catalogs/release-readiness/v1",
+  "protocolVersion": "v0.9",
+  "note": "Shared A2UI catalog contract. Python reads this file to build the agent prompt and to validate generated components; frontend/src/a2ui-catalog.tsx registers the matching React implementations. The catalogId must be byte-identical on both sides — the renderer matches catalogs by exact string equality.",
+  "layoutComponents": {
+    "Column": "Vertical stack. Props: children (array of component ids), gap.",
+    "Row": "Horizontal row. Props: children (array of component ids), gap.",
+    "Card": "Bordered container around one child. Props: child (component id).",
+    "Text": "A line or paragraph of text. Props: text, variant (one of: display, headline, title, body, caption).",
+    "Divider": "A horizontal rule. No props."
+  },
+  "components": {
+    "ReleaseSummary": {
+      "description": "Headline readiness verdict for the release. Use this once, near the top, when the user asks about readiness.",
+      "properties": {
+        "releaseName": { "type": "string", "bindable": true, "description": "Display name, e.g. 'Release 2.4'." },
+        "statusLabel": { "type": "string", "bindable": true, "description": "Short verdict, e.g. 'Not ready for production'." },
+        "ready": { "type": "boolean", "bindable": true, "description": "True only when there are no blockers." },
+        "passingChecks": { "type": "array", "bindable": true, "description": "Names of the checks that passed." }
+      }
+    },
+    "BlockerList": {
+      "description": "The list of things blocking release. Bind to /blockers.",
+      "properties": {
+        "title": { "type": "string", "bindable": true, "description": "Optional heading." },
+        "blockers": { "type": "array", "bindable": true, "description": "Array of objects with 'title' and 'detail'. Bind to /blockers." }
+      }
+    },
+    "MigrationRiskCard": {
+      "description": "The pending database migration: its risk, what it does, and how to mitigate it.",
+      "properties": {
+        "name": { "type": "string", "bindable": true },
+        "risk": { "type": "string", "bindable": true, "description": "e.g. 'high'." },
+        "summary": { "type": "string", "bindable": true },
+        "details": { "type": "string", "bindable": true },
+        "mitigation": { "type": "string", "bindable": true }
+      }
+    },
+    "ApprovalForm": {
+      "description": "Complete, self-contained security-approval form. It owns its own reviewer picker, comment field, required-field validation and submit button, and it reports its own status. Never build a form out of Text and input components; use this. Do not add your own submit button next to it.",
+      "properties": {
+        "releaseId": { "type": "string", "bindable": true, "description": "Bind to /release/id." },
+        "reviewers": { "type": "array", "bindable": true, "description": "Selectable reviewers. Bind to /reviewers." },
+        "status": { "type": "string", "bindable": true, "description": "Bind to /approval/status." },
+        "statusMessage": { "type": "string", "bindable": true, "description": "Bind to /approval/message." }
+      }
+    }
+  }
+}

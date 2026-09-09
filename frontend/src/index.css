@@ -1,0 +1,15 @@
+@import "tailwindcss";
+
+@theme {
+  --color-border: hsl(214 32% 91%);
+  --color-muted: hsl(210 40% 96%);
+  --color-muted-fg: hsl(215 16% 47%);
+  --color-fg: hsl(222 47% 11%);
+  --color-primary: hsl(222 47% 25%);
+  --color-danger: hsl(0 72% 45%);
+  --color-warning: hsl(32 85% 40%);
+  --color-success: hsl(142 60% 30%);
+}
+
+html, body, #root { height: 100%; }
+body { color: var(--color-fg); background: #fff; }
