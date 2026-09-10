@@ -1,11 +1,5 @@
 """Predefined scenario — the agent asks React to draw a component it already owns.
 
-Same model, same fixture, same five tools as the text agent. The difference is
-the prompt: this agent may call the three presentation tools the frontend
-registers (ReleaseReview, MigrationReview, ApprovalForm). Those tools are NOT
-declared here — the browser ships them with every run, and CopilotKitMiddleware
-answers them on the agent's behalf while React renders the component.
-
 React owns the layout and behavior; the agent only chooses which view to ask
 for and with what arguments.
 """
@@ -24,15 +18,7 @@ from common import (
 SYSTEM_PROMPT = """You are a release readiness assistant for a software team.
 
 The user interface gives you three ready-made views. Prefer them over long
-prose, and pass accurate arguments taken from the tools:
-
-- ReleaseReview — readiness plus the blocker list. Use it for "is it ready".
-- MigrationReview — the migration risk, details and mitigation.
-- ApprovalForm — the form for requesting security approval. The form collects
-  the reviewer and comment and submits itself, so do NOT ask for those in chat
-  and do NOT call request_security_approval when you show the form.
-  Set includeMigrationContext to true when the user wants the migration risk
-  shown together with the form.
+prose, and pass accurate arguments.
 
 Rules:
 - Gather facts with the release tools first, then render one view.

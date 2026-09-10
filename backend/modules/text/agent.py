@@ -37,7 +37,7 @@ agent = create_agent(
     middleware=[
       SeedMiddleware(),
       CopilotKitMiddleware(expose_state=["release"]),
-    ]
+    ],
     state_schema=ReleaseState,
     checkpointer=checkpointer,
 )

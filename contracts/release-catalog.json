@@ -7,7 +7,8 @@
     "Row": "Horizontal row. Props: children (array of component ids), gap.",
     "Card": "Bordered container around one child. Props: child (component id).",
     "Text": "A line or paragraph of text. Props: text, variant (one of: display, headline, title, body, caption).",
-    "Divider": "A horizontal rule. No props."
+    "Divider": "A horizontal rule. No props.",
+    "Button": "A clickable button. Props: text, onClick."
   },
   "components": {
     "ReleaseSummary": {

@@ -1,10 +1,4 @@
-"""A2UI scenario — the model composes the interface from a catalog.
-
-The other two scenarios choose between shapes the developer already fixed. Here
-the model decides the composition: which components appear, in what order, and
-nested how. It does that by calling render_release_surface with an A2UI
-component tree, which this module validates and turns into real, versioned A2UI
-operations (createSurface / updateComponents / updateDataModel).
+"""A2UI scenario - the model composes the interface from a catalog.
 
 Operational values are never baked into the components. They are bound to data
 paths, and the data model is populated here from release state — which is what
@@ -27,7 +21,6 @@ from langchain_core.messages import ToolMessage
 
 from common import (
     ROOT,
-    MissingKeyMiddleware,
     ReleaseState,
     SeedMiddleware,
     build_model,
@@ -228,7 +221,6 @@ agent = create_agent(
     tools=[*release_tools(), *a2ui_tools()],
     system_prompt=SYSTEM_PROMPT,
     middleware=[
-        MissingKeyMiddleware(),
         SeedMiddleware(),
         CopilotKitMiddleware(expose_state=["release"]),
     ],
